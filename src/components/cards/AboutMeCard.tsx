@@ -48,6 +48,7 @@ const AboutMeCard = (props: AboutMeCardProps) => {
             <AboutMeCardRow
               title={t("aboutMeCard.github")}
               value={props.aboutMe.github}
+              isLink={true}
             />
           )}
         </InfoSection>
