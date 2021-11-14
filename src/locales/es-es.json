@@ -8,6 +8,9 @@
     "loader" : {
         "text": "cargando..."
     },
+    "dashboard" : {
+        "error": "Error en la búsqueda"
+    },
     "login": {
         "err_usr_pass": "Usuario o contraseña no pueden estar vacíos",
         "err_inv_lgn": "Inicio inválido",
@@ -21,6 +24,7 @@
         "header": "Project Input",
         "input_title": "Título",
         "input_description": "Descripción",
+        "input_link": "Enlace",
         "input_tags": "Tags",
         "input_version": "Versión",
         "button_accept": "Publicar",

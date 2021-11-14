@@ -8,6 +8,9 @@
     "loader" : {
         "text": "loading..."
     },
+    "dashboard" : {
+        "error": "Error loading data"
+    },
     "login": {
         "err_usr_pass": "Username and password must not be null",
         "err_inv_lgn": "Invalid login",
@@ -21,6 +24,7 @@
         "header": "Project Input",
         "input_title": "Title",
         "input_description": "Description",
+        "input_link": "Link",
         "input_tags": "Tags",
         "input_version": "Version",
         "button_accept": "Post",

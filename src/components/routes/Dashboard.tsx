@@ -65,7 +65,7 @@ const Dashboard = () => {
           </ResponseWrapper>
         )}
 
-        {error && <ErrorMsg>{t("search.error")}</ErrorMsg>}
+        {error && <ErrorMsg>{t("dashboard.error")}</ErrorMsg>}
       </ContentWrapper>
     </Wrapper>
   );

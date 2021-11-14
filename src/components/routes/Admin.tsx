@@ -11,8 +11,10 @@ const Admin = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
+  const [link, setLink] = useState("");
   const [version, setVersion] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [sucessMsg, setSuccessMsg] = useState("");
   const { addNotification, removeLastNotification } = useApp();
 
   async function postProject(event: FormEvent<HTMLFormElement>) {
@@ -28,16 +30,22 @@ const Admin = () => {
       console.log(description);
       console.log(tags);
       console.log(version);
+      addNotification("Posting...");
+      resetForm();
+      setSuccessMsg(t("admin.suc_network"));
+      setTimeout(() => {setSuccessMsg("")}, 2000);
     } catch (e) {
-      setErrorMsg(t("login.err_inv_lgn"));
+      setErrorMsg(t("admin.err_network"));
     } finally {
       removeLastNotification();
     }
   }
 
-  function resetForm(event: FormEvent<HTMLFormElement>) {
+  function resetForm() {
     setErrorMsg("");
+    setSuccessMsg("");
     setTitle("");
+    setLink("");
     setDescription("");
     setTags("");
     setVersion("");
@@ -54,6 +62,11 @@ const Admin = () => {
 
   function onChangeDescription(e: ChangeEvent<HTMLInputElement>) {
     setDescription(e.target.value);
+    onChangeAnyInput();
+  }
+
+  function onChangeLink(e: ChangeEvent<HTMLInputElement>) {
+    setLink(e.target.value);
     onChangeAnyInput();
   }
 
@@ -81,6 +94,7 @@ const Admin = () => {
         <TitleForm>{t("admin.header")}</TitleForm>
         <LoginPannel onSubmit={postProject} onReset={resetForm}>
           {errorMsg && <ErrorDescription>{errorMsg}</ErrorDescription>}
+          {sucessMsg && <SuccessDescription>{sucessMsg}</SuccessDescription>}
           <LoginForm
             name="title"
             type="text"
@@ -94,6 +108,13 @@ const Admin = () => {
             placeholder={t("admin.input_description")}
             value={description}
             onChange={onChangeDescription}
+          />
+          <LoginForm
+            name="link"
+            type="text"
+            placeholder={t("admin.input_link")}
+            value={link}
+            onChange={onChangeLink}
           />
           <LoginForm
             name="tags"
@@ -110,20 +131,20 @@ const Admin = () => {
             onChange={onChangeVersion}
           />
           <ButtonWrapper>
-            <ButtonForm
-              type="submit"
-              value={
-                t("admin.button_accept") != null
-                  ? (t("admin.button_accept") as string)
-                  : "Publish"
-              }
-            />
             <ButtonCancel
               type="reset"
               value={
                 t("admin.button_delete") != null
                   ? (t("admin.button_delete") as string)
                   : "Delete"
+              }
+            />
+            <ButtonForm
+              type="submit"
+              value={
+                t("admin.button_accept") != null
+                  ? (t("admin.button_accept") as string)
+                  : "Publish"
               }
             />
           </ButtonWrapper>
@@ -193,6 +214,14 @@ const LoginPannel = styled.form`
 
 const ErrorDescription = styled(Caption)`
   color: ${themes.light.warning};
+`;
+
+const SuccessDescription = styled(Caption)`
+  color: ${themes.light.primary};
+
+  @media (prefers-color-scheme: dark) {
+    color: ${themes.dark.primary};
+  }
 `;
 
 const LoginForm = styled.input`
