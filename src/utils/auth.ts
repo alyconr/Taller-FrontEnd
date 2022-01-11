@@ -98,12 +98,9 @@ export function getCurrentUser(): User | undefined {
 
 function isTokenActive(): boolean {
   const token = getToken();
-  const currentTimestamp = Date.now();
-
+  // TODO: check token expiration
   return !!(
-    token &&
-    token.expirationTimestampInMillis - currentTimestamp > 0 &&
-    token.notBeforeTimestampInMillis <= currentTimestamp
+    token 
   );
 }
 
