@@ -1,13 +1,13 @@
 {
     "meta": {
-        "title": "Portfolio",
-        "description": "Personal Portfolio Webpage"
+        "title": "Proyecto Web",
+        "description": "Master en Desarrollo Web Full Stack"
     },
     "app": {
-        "title": "Bienvenid@s a mi Web Portfolio"
+        "title": "Bienvenid@s al Poryecto Web"
     },
     "landing": {
-        "title": "Bienvenido a mi Portfolio"
+        "title": "Master en Desarrollo Web Full Stack"
     },
     "loader" : {
         "text": "cargando..."
@@ -25,6 +25,7 @@
     },
     "admin": {
         "err_invalid_form": "Elementos no pueden estar vacíos",
+        "err_invalid_post": "Error al crear el post",
         "header": "Project Input",
         "input_title": "Título",
         "input_description": "Descripción",

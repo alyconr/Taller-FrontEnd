@@ -22,17 +22,20 @@ const AboutMeCard = (props: AboutMeCardProps) => {
           <AboutMeCardRow
             title={t("aboutMeCard.name")}
             value={props.aboutMe.name}
+            {...props}
           />
           {props.aboutMe.birthday && (
             <AboutMeCardRow
               title={t("aboutMeCard.birthdate")}
               value={props.aboutMe.birthday}
+              {...props}
             />
           )}
           {props.aboutMe.nationality && (
             <AboutMeCardRow
               title={t("aboutMeCard.nationality")}
               value={props.aboutMe.nationality}
+              {...props}
             />
           )}
         </InfoSection>
@@ -42,12 +45,14 @@ const AboutMeCard = (props: AboutMeCardProps) => {
             <AboutMeCardRow
               title={t("aboutMeCard.occupation")}
               value={props.aboutMe.job}
+              {...props}
             />
           )}
           {props.aboutMe.github && (
             <AboutMeCardRow
               title={t("aboutMeCard.github")}
               value={props.aboutMe.github}
+              {...props}
             />
           )}
         </InfoSection>
@@ -67,6 +72,8 @@ const Wrapper = styled.div`
   place-items: center;
   row-gap: 30px;
   min-width: 300px;
+  cursor: pointer;
+  
 
   @media (prefers-color-scheme: dark) {
     ${themes.dark.card};
@@ -99,6 +106,23 @@ const Wrapper = styled.div`
       fill: white;
     }
   }
+
+  transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+ box-shadow: rgb(24 32 79 / 25%) 0px 40px 80px,
+ rgb(255 255 255 / 50%) 0px 0px 0px 0.5px inset;
+ animation: fadein 0.4s;
+
+ :hover {
+   transform: scale(1.03);
+ }
+ :active {
+   transform: scale(1.01);
+ }
+
+ @keyframes fadein {
+   from { opacity: 0; }
+   to   { opacity: 1; }
+ }
 `;
 
 const ImageWrapper = styled.img`

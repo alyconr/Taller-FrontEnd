@@ -2,13 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { themes } from "../../styles/ColorStyles";
 import { MediumText } from "../../styles/TextStyles";
+import { AboutMe } from './../../model/aboutme';
 
 interface AboutMeCardRowProps {
   title: string;
   value: string | number;
+  aboutMe : AboutMe;
 }
 
 const AboutMeCardRow = (props: AboutMeCardRowProps) => {
+  const {aboutMe} = props;
 
     const formatDate = (value: string | number): string => {
       if(typeof value === "number") {
@@ -20,6 +23,7 @@ const AboutMeCardRow = (props: AboutMeCardRowProps) => {
   }
 
   return (
+    <Wrapper href={aboutMe.github} target="_blank" rel="noopener">
     <InfoDetailBox>
       <InfoKey>{props.title}</InfoKey>
       <InfoValueWrapper>
@@ -28,8 +32,45 @@ const AboutMeCardRow = (props: AboutMeCardRowProps) => {
           }</InfoValue>
       </InfoValueWrapper>
     </InfoDetailBox>
+    </Wrapper>
   );
 };
+ const Wrapper = styled.a`
+ cursor: pointer;
+ width: 280px;
+ height: 20px;
+ @media (max-width: 450px) {
+     width: auto;
+     min-width: 240px;
+     margin: 0px 0px;
+ }
+
+ @media (max-width: 700px) {
+     min-width: 240px;
+     width: auto;
+     max-width: 450px;
+     margin: 0px 0px;
+ }
+
+ transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+ box-shadow: rgb(24 32 79 / 25%) 0px 40px 80px,
+ rgb(255 255 255 / 50%) 0px 0px 0px 0.5px inset;
+ animation: fadein 0.4s;
+
+ :hover {
+   transform: scale(1.03);
+ }
+ :active {
+   transform: scale(1.01);
+ }
+
+ @keyframes fadein {
+   from { opacity: 0; }
+   to   { opacity: 1; }
+ }
+`
+
+
 
 const InfoDetailBox = styled.div`
   display: grid;

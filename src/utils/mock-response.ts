@@ -2,6 +2,7 @@ import { AboutMe } from "../model/aboutme";
 import { Project } from "../model/project";
 
 
+
 export const mockLogin = (userName: string, password: string) => new Promise<TokenResponse>(function (resolve, rejected) {
     setTimeout(() => {
         if (userName === "user@threepoints.com" && password === "patata") {
@@ -35,7 +36,7 @@ export const mockAboutme = () => new Promise<AboutMe>(function (resolve, rejecte
             "birthday":765817712000,
             "nationality":"Spain",
             "job":"Red Hat",
-            "github":"https://github.com/lucferbux"
+            "github":"https://github.com/alyconr"
             }`
         ));
     }, 500);
@@ -119,6 +120,25 @@ export const mockProjects = () => new Promise<Project[]>(function (resolve, reje
                 "timestamp":"765817712007"
                 }
             ]`
+        ));
+    }, 500);
+
+});
+
+
+export const mockPosts = () => new Promise<Project[]>(function (resolve, rejected) {
+    setTimeout(() => {
+        resolve(JSON.parse(
+            `{
+                "id":"12349as8df90",
+                "title":"Flex",
+                "description":"$FlexBox is a layout component that allows you to create a flexible container that can be used to layout your components in a variety of ways.",
+                "version":"2.0.0",
+                "link":"www.google.com",
+                "tag":"Ux, UI, Design"
+              
+                
+            }`
         ));
     }, 500);
 

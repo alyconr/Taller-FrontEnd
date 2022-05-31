@@ -105,7 +105,7 @@ const CardWrapper = styled.div`
   backdrop-filter: blur(40px);
   border-radius: 20px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(45, 150, 255, 0.4);
   box-shadow: rgb(24 32 79 / 25%) 0px 40px 80px,
   rgb(255 255 255 / 50%) 0px 0px 0px 0.5px inset;
   animation: fadein 0.4s;
