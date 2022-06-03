@@ -18,7 +18,7 @@ const Admin = () => {
   const { t } = useTranslation();
  
   const { addNotification, removeLastNotification } = useApp();
-  
+  const [successMsg, setSuccessMsg] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [link, setLink] = useState("");
@@ -36,6 +36,7 @@ const Admin = () => {
       
   
  function doPost(event: FormEvent<HTMLFormElement>) {
+  dismissError();
     event.preventDefault();
     if (!readyToSubmit()) {
       setErrorMsg(t("login.err_usr_pass"));
@@ -53,7 +54,12 @@ const Admin = () => {
       };
       
     console.log(data);
-      
+    resetForm();
+    setSuccessMsg(t("Successfully added"));
+    setTimeout(() => { 
+     removeLastNotification();
+     setSuccessMsg("");
+    }, 2000);
       
     } catch (e) {
       setErrorMsg(t("login.err_inv_lgn"));
@@ -62,6 +68,15 @@ const Admin = () => {
     }
   }
 
+  function resetForm() {
+    setTitle("");
+    setDescription("");
+    setLink("");
+    setTags("");
+    setVersion("");
+    setDescription("");
+    setSuccessMsg("");
+  }
 
   function onChangeAnyInput() {
     setErrorMsg("");
@@ -97,7 +112,9 @@ const Admin = () => {
     return title !== "" && description !== "" && link !== "" && tags !== "" && version !== "";
   }
 
-  
+  function dismissError() {
+    setErrorMsg("");
+  }
 
   
   return (
@@ -105,6 +122,7 @@ const Admin = () => {
       <ContentWrapper>
         <TitleForm>{t("admin.header")} </TitleForm>
         { errorMsg && <ErrorDescription>{errorMsg}</ErrorDescription> }
+        { successMsg && <SuccessDescription>{successMsg}</SuccessDescription> }
         <FormPannel onSubmit={doPost}>
           <PostForm name="title"  type="text" placeholder ={t("admin.input_title")} value={title} onChange={onChangeTitle} />
           <PostForm name="description"  type="text" placeholder ={t("admin.input_description")} value={description} onChange={onChangeDescription} /> 
@@ -134,7 +152,9 @@ const Admin = () => {
 
 
 
-
+    const SuccessDescription = styled(Caption)`
+    color: ${themes.light.primary};
+    `;
 
 
 
@@ -161,6 +181,17 @@ const Admin = () => {
   background-color: ${themes.light.primary};
   color: ${themes.dark.text1};
 
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+
+  &:active {
+    background-color: ${themes.dark.primary};
+    color: ${themes.light.text1};
+    transform: scale(4px);
+  }
+
   @media (prefers-color-scheme: dark) {
     background-color: ${themes.dark.primary};
   }
@@ -175,6 +206,17 @@ const ButtonDelete = styled.input`
   background-color: ${themes.light.warning};
   color: ${themes.dark.text1};
 
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+
+  &:active {
+    background-color: ${themes.dark.primary};
+    color: ${themes.light.text1};
+    transform: scale(4px);
+  }
   @media (prefers-color-scheme: dark) {
     background-color: ${themes.dark.secondary};
   }
